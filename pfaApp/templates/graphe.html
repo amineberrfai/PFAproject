@@ -1,0 +1,278 @@
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'assets/img/BPM1.JPG' %}" >
+  <title>
+    BPM Graphe
+  </title>
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <!-- Nucleo Icons -->
+  <link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/css/nucleo-svg.css' %}" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- CSS Files -->
+  <link id="pagestyle" href="{% static 'assets/css/material-dashboard.css' %}" rel="stylesheet" />
+  <style>
+    .chart-container{
+      width : 100%;
+      length : 300px;
+      overflow-x: scroll; /* ajoute une barre de défilement horizontale lorsque la largeur du graphique dépasse la largeur de la div */
+    }
+    .btn-warning {
+      color: #FEC501;
+      background-color: #001233;
+      border-color: #001233;
+      box-shadow: none;
+      text-shadow: none;
+    }
+
+    .btn-warning:hover {
+      color: #001233;
+      background-color: #FEC501;
+      border-color: #FEC501;
+    }
+
+    .btn-warning:focus, .btn-warning.focus {
+      box-shadow: none;
+    }
+
+    .btn-warning:active, .btn-warning.active,
+    .show > .btn-warning.dropdown-toggle {
+      background-color: #001233;
+      border-color: #001233;
+    }
+
+  </style>
+</head>
+<body class="g-sidenav-show  bg-gray-200">
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3  " id="sidenav-main" style="background-color: #001233;">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0">
+        <img src="{% static 'assets/img/BPM1.JPG' %}" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold text-white">PFA</span>
+      </a>
+    </div>
+    <div class=" w-auto " id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="text-capitalize text-bold text-s" style="color:#FEC501">Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{%url 'bpm'%}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">table_view</i>
+            </div>
+            <span class="text-capitalize text-bold text-s" style="color:#FEC501">BPM</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active" style="background-color: #FEC501" href="{%url 'graphe'%}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">show_chart</i>
+            </div>
+            <span class="text-capitalize text-bold text-s" style="color:#001233">BPM graphe</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="{%url 'pression'%}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">table_view</i>
+            </div>
+            <span class="text-capitalize text-bold text-s" style="color:#FEC501">Pression</span>
+          </a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link text-white " href="{%url 'pgraphe'%}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">show_chart</i>
+            </div>
+            <span class="text-capitalize text-bold text-s" style="color:#FEC501">Pression graphe</span>
+          </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white " href="{%url 'temperature'%}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">table_view</i>
+            </div>
+            <span class="text-capitalize text-bold text-s" style="color:#FEC501">Temperature</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white " href="{%url 'tgraphe'%}">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">show_chart</i>
+            </div>
+            <span class="text-capitalize text-bold text-s" style="color:#FEC501">Temperature graphe</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class=" border-radius-lg pt-4 pb-3" style="background-color:#001233">
+                <h6 class="text-capitalize ps-3"  style="color:#FEC501">Graphe</h6>
+              </div>
+            </div>
+
+            <div class="card-body px-0 pb-2">
+              <!--<div id="graphe">
+                  <canvas id="myAreaChart" width="100%" height="60"></canvas>
+              </div>-->
+              <button class="btn btn-warning" onclick="downloadChart()">Download Chart</button>
+                <div class="chart-container">
+                  <canvas id="myAreaChart" width="100%" height="60" ></canvas>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer py-4  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                © <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                made with by
+                <a href="mailto:amine.berrfai@ump.ac.ma?subject=Error!!!&body=J'ai quelques problèmes avec votre siteweb" class="font-weight-bold" target="_blank">Berrfai Amine</a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+<script>
+const dates = [{% for i in tab %} '{{ i.dt|date:'d/m/Y H:i:s' }}', {% endfor %}];
+const datas = [{% for i in tab %} '{{i.bpm}}', {% endfor %}];
+
+var ctx = document.getElementById('myAreaChart').getContext('2d');
+
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: dates,
+    datasets: [{
+      label: 'Heart Rate',
+      data: datas,
+      borderColor: 'rgba(54, 162, 235, 1)',
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      borderWidth: 2
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Heart Rate over Time',
+      fontSize: 20,
+      fontColor: '#333'
+    },
+    legend: {
+      display: true,
+      position: 'bottom'
+    },
+    scales: {
+      xAxes: [{
+        ticks: {
+          fontColor: '#333',
+          fontStyle: 'bold'
+        },
+        gridLines: {
+          color: 'rgba(0, 0, 0, 0.05)',
+          lineWidth: 1
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          fontColor: '#333',
+          fontStyle: 'bold',
+          beginAtZero: true
+        },
+        gridLines: {
+          color: 'rgba(0, 0, 0, 0.05)',
+          lineWidth: 1
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Heart Rate (BPM)',
+          fontColor: '#333',
+          fontSize: 16,
+          fontStyle: 'bold'
+        }
+      }]
+    },
+
+  }
+});
+</script>
+
+//download the chart
+
+<script>
+function downloadChart() {
+  // Get the chart canvas
+  var canvas = document.getElementById('myAreaChart');
+
+  // Convert the canvas to an image
+  var img = canvas.toDataURL('image/png');
+
+  // Create a temporary link element
+  var link = document.createElement('a');
+  link.href = img;
+
+  // Set the download attribute and filename
+  link.download = 'heart-rate-chart.png';
+
+  // Add the link to the DOM and click it
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+</script>
+
+
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="https://unpkg.com/scrollbar.js"></script>
+
+  <script >
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/material-dashboard.min.js?v=3.0.4"></script>
+</body>
+
+</html>

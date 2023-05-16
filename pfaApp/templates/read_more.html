@@ -1,0 +1,190 @@
+{% load admin_urls %}
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'assets/img/BPM1.jpg' %}" >
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <title>
+    Read more
+  </title>
+  <!--     Fonts and icons     -->
+
+  {% load bootstrap4 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      margin-bottom: 30px;
+    }
+
+    .card-header {
+      background-color: #17a2b8;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .card-body {
+      font-size: 1.2rem;
+    }
+
+    .card-body p {
+      margin-bottom: 0;
+    }
+
+    .card-body ul {
+      margin-bottom: 0;
+    }
+
+    .card-body li {
+      margin-bottom: 10px;
+    }
+
+    .card-body .normal {
+      color: green;
+      font-weight: bold;
+    }
+
+    .card-body .warning {
+      color: orange;
+      font-weight: bold;
+    }
+
+    .card-body .danger {
+      color: red;
+      font-weight: bold;
+    }
+
+    .card-footer {
+      background-color: #f8f9fa;
+      border-top: none;
+    }
+
+    .card-footer p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    .card-footer a {
+      color: #17a2b8;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg" style="background-color:#001233">
+    <a class="navbar-brand" style="color:#FEC501">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#" style="color:#FEC501">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown" >
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#FEC501">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item"  href="#">Anglais</a>
+            <a class="dropdown-item" href="#">Français</a>
+            <a class="dropdown-item" href="#">Arabe</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            Body Temperature
+          </div>
+          <div class="card-body">
+            <p>Normal body temperature for adults is about 98.6°F (37°C).</p>
+            <p>When to contact a doctor:</p>
+            <ul>
+              <li>If your temperature is higher than 100.4°F (38°C) for more than 24 hours.</li>
+              <li>If your temperature is lower than 95°F (35°C).</li>
+            </ul>
+            <p class="normal">Normal range: 97°F to 99°F (36.1°C to 37.2°C).</p>
+          </div>
+          <div class="card-footer">
+            <p>Source: <a href="https://www.cdc.gov/healthywater/emergency/creating-storing-emergency-water.html">CDC</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            Blood Pressure
+          </div>
+          <div class="card-body">
+            <p>Systolic pressure is the pressure when the heart beats, while diastolic pressure is the pressure when the heart rests between beats.</p>
+            <p>Normal blood pressure for adults is:</p>
+            <ul>
+            <li>Systolic pressure: less than 120 mmHg</li>
+            <li>Diastolic pressure: less than 80 mmHg</li>
+            </ul>
+            <p>When to contact a doctor:</p>
+            <ul>
+            <li>If your blood pressure is consistently higher than 140/90 mmHg.</li>
+            <li>If you experience symptoms such as headache, shortness of breath, chest pain, or blurred vision.</li>
+            </ul>
+            <p class="normal">Normal range: Systolic pressure less than 120 mmHg, Diastolic pressure less than 80 mmHg.</p>
+          </div>
+            <div class="card-footer">
+            <p>Source: <a href="https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings">American Heart Association</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Heart Rate
+        </div>
+        <div class="card-body">
+          <p>Normal resting heart rate for adults is between 60 and 100 beats per minute.</p>
+          <p>When to contact a doctor:</p>
+          <ul>
+            <li>If your resting heart rate is consistently above 100 beats per minute.</li>
+            <li>If you experience symptoms such as chest pain, shortness of breath, or fainting.</li>
+          </ul>
+          <p class="normal">Normal range: 60 to 100 beats per minute.</p>
+        </div>
+        <div class="card-footer">
+          <p>Source: <a href="https://www.mayoclinic.org/healthy-lifestyle/fitness/expert-answers/heart-rate/faq-20057979">Mayo Clinic</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
